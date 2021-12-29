@@ -1,0 +1,36 @@
+WebInterface
+http://localhost:8080/graphiq
+
+
+Postman
+http://localhost:8080/graphql
+
+
+POST-REQUESTS:
+mutation {
+  createVehicle(type: "car", modelCode: "XYZ0192", brandName: "XYZ", launchDate: "2016-08-16")
+  {
+    id,
+    modelCode
+  }
+}
+
+query {
+  vehicles(count: 1)
+  {
+        id,
+        type,
+        modelCode
+  }
+}
+
+query {
+  vehicles(id: 1)
+  {
+        id,
+        type,
+        modelCode,
+        brandName,
+        launchDate
+  }
+}
