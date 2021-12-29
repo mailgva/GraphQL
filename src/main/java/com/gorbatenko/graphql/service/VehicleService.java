@@ -4,6 +4,7 @@ import com.gorbatenko.graphql.model.Vehicle;
 import com.gorbatenko.graphql.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -31,5 +32,16 @@ public class VehicleService {
     @Transactional(readOnly = true)
     public Optional<Vehicle> getVehicle(final int id) {
         return this.vehicleRepository.findById(id);
+    }
+    @Transactional
+    public Boolean deleteVehicle(final int id) {
+        this.vehicleRepository.deleteById(id);
+        return true;
+    }
+    public Vehicle updateVehicles(final int id, final String type, final String modelCode) {
+        Vehicle vehicle = this.vehicleRepository.findById(id).get();
+        vehicle.setType(type);
+        vehicle.setModelCode(modelCode);
+        return this.vehicleRepository.save(vehicle);
     }
 }
