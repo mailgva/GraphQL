@@ -12,6 +12,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class VehicleService {
+    private List<Vehicle> vehicles = List.of(
+            new Vehicle(0, "car", "honda", "accord", LocalDate.now()),
+            new Vehicle(1, "car", "nissan", "tiida", LocalDate.now()),
+            new Vehicle(2, "car", "audi", "r8", LocalDate.now()),
+            new Vehicle(3, "car", "toyota", "camry", LocalDate.now())
+    );
+
     private final VehicleRepository vehicleRepository ;
     public VehicleService(final VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository ;
@@ -43,5 +50,9 @@ public class VehicleService {
         vehicle.setType(type);
         vehicle.setModelCode(modelCode);
         return this.vehicleRepository.save(vehicle);
+    }
+
+    public List<Vehicle> vehicleByModelCode(String modelCode) {
+        return vehicles.stream().filter(vehicle -> vehicle.getModelCode().equals(modelCode)).collect(Collectors.toList());
     }
 }

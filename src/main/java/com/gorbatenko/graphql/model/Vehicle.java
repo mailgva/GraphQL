@@ -1,13 +1,18 @@
 package com.gorbatenko.graphql.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 @Data
 @EqualsAndHashCode
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,7 +27,6 @@ public class Vehicle implements Serializable {
     private String brandName;
     @Column(name = "launch_date")
     private LocalDate launchDate;
-    private transient  String formattedDate;
     // Getter and setter
     public String getFormattedDate() {
         return getLaunchDate().toString();
