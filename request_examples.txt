@@ -46,3 +46,30 @@ query {
   }
 }
 
+
+query {
+
+  person0 : personWithFriend(personId: 0, friendId: 0) {...listFields}
+
+  person1 : personWithFriend(personId: 1, friendId: 0)  {...listFields}
+
+}
+fragment listFields on Person {
+    name
+    friends (first: 1)
+    vehicles {
+        modelCode
+    }
+}
+
+
+query {
+  persons(count: 10)
+  {
+    name,
+    friends,
+    vehicles {
+        modelCode
+    }
+}
+}
